@@ -1,0 +1,122 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {}
+}<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PRESTO CASH - Admin Dashboard</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#0f1724;color:#e6eef8;margin:0;padding:0}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    h1{color:#38bdf8}
+    table{width:100%;border-collapse:collapse;margin-top:20px}
+    th,td{border:1px solid #94a3b8;padding:10px;text-align:left}
+    th{background:#071628}
+    .btn{padding:10px 18px;background:#38bdf8;color:#052233;font-weight:bold;border:none;border-radius:8px;cursor:pointer;margin-top:10px}
+    .login-box{max-width:400px;margin:50px auto;background:#0b1220;padding:20px;border-radius:12px}
+    input{width:100%;padding:10px;margin:10px 0;border-radius:6px;border:1px solid #94a3b8;background:#071628;color:#e6eef8}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>PRESTO CASH - Admin Dashboard</h1>
+
+    <!-- Formulaire de login -->
+    <div id="loginBox" class="login-box">
+      <h2>Connexion Admin</h2>
+      <input type="password" id="adminPassword" placeholder="Mot de passe admin">
+      <button class="btn" onclick="login()">Se connecter</button>
+    </div>
+
+    <!-- Contenu dashboard -->
+    <div id="dashboardContent" style="display:none;">
+      <h2>Résumé</h2>
+      <p><strong>Total utilisateurs activés :</strong> <span id="totalUsers">0</span></p>
+      <p><strong>Nombre de filleuls :</strong> <span id="referralsCount">0</span></p>
+      <p><strong>Total commissions :</strong> <span id="totalCommission">0</span> F CFA</p>
+
+      <h2>Utilisateurs</h2>
+      <table id="usersTable">
+        <thead>
+          <tr>
+            <th>Mobile</th>
+            <th>Pays</th>
+            <th>Parrain</th>
+            <th>Activé</th>
+            <th>Commission</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <h2>Transactions</h2>
+      <table id="transactionsTable">
+        <thead>
+          <tr>
+            <th>Mobile</th>
+            <th>Montant</th>
+            <th>Statut</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const ADMIN_PASSWORD = "prestoAdmin2025"; // ⚠️ change ce mot de passe
+
+    async function login(){
+      const pwd = document.getElementById("adminPassword").value;
+      if(pwd === ADMIN_PASSWORD){
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("dashboardContent").style.display = "block";
+        loadDashboard();
+      } else {
+        alert("Mot de passe incorrect ❌");
+      }
+    }
+
+    async function loadDashboard(){
+      const res = await fetch("https://TON_BACKEND.vercel.app/api/admin");
+      if(!res.ok) return alert("Erreur de chargement");
+      const data = await res.json();
+
+      // Résumé
+      document.getElementById("totalUsers").textContent = data.totalUsers;
+      document.getElementById("referralsCount").textContent = data.referralsCount;
+      document.getElementById("totalCommission").textContent = data.totalCommission;
+
+      // Utilisateurs
+      const usersTable = document.querySelector("#usersTable tbody");
+      usersTable.innerHTML = "";
+      data.users.forEach(u => {
+        usersTable.innerHTML += `
+          <tr>
+            <td>${u.mobile}</td>
+            <td>${u.country}</td>
+            <td>${u.referral || "-"}</td>
+            <td>${u.activated ? "✅" : "❌"}</td>
+            <td>${u.commission} F</td>
+          </tr>`;
+      });
+
+      // Transactions
+      const txTable = document.querySelector("#transactionsTable tbody");
+      txTable.innerHTML = "";
+      data.transactions.forEach(t => {
+        txTable.innerHTML += `
+          <tr>
+            <td>${t.mobile}</td>
+            <td>${t.amount}</td>
+            <td>${t.status}</td>
+            <td>${t.created_at}</td>
+          </tr>`;
+      });
+    }
+  </script>
+</body>
+</html>
