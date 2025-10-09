@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord Affilié</title>
+    <style>
+        /* Styles de base pour simuler le look du dashboard */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4; /* Fond gris clair */
+            color: #333;
+        }
+        .header {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .profile-info h1 {
+            font-size: 1.5em;
+            margin: 0 0 10px 0;
+            color: #1a73e8; /* Bleu vif pour le nom */
+        }
+        .encaissement-btn {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            text-align: center;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+        }
+        /* Style des cartes de données */
+        .data-grid {
+            display: flex;
+            flex-wrap: wrap; /* Permet aux éléments de passer à la ligne sur mobile */
+            gap: 15px;
+        }
+        .data-card {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1 1 calc(50% - 15px); /* Deux cartes par ligne */
+            min-width: 150px; 
+            box-sizing: border-box;
+        }
+        .card-label {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .card-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #000;
+        }
+        .small-value {
+            font-size: 0.8em;
+            color: #888;
+        }
+        /* Adaptation mobile: une carte par ligne pour plus de clarté */
+        @media (max-width: 600px) {
+            .data-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="profile-info">
+            <h1>@AMEKE Thomas</h1>
+            <p style="color:#555;">Modifier le profil ou retirer des fonds</p>
+            <button class="encaissement-btn">💰 ENCAISSEMENT</button>
+        </div>
+    </div>
+
+    <div class="data-grid">
+        
+        <div class="data-card">
+            <div class="card-label">Votre solde</div>
+            <div class="card-value">$293.00</div>
+            <div class="small-value">(168806XOF)</div>
+        </div>
+        
+        <div class="data-card">
+            <div class="card-label">Clics</div>
+            <div class="card-value">9</div>
+        </div>
+        
+        <div class="data-card">
+            <div class="card-label">Récompenses de parrainage</div>
+            <div class="card-value">$118.00</div>
+            <div class="small-value">(67984XOF)</div>
+        </div>
+        
+        <div class="data-card">
+            <div class="card-label">Nombre d'invitations</div>
+            <div class="card-value">5</div>
+        </div>
+        
+        <div class="data-card">
+            <div class="card-label">Tâches terminées</div>
+            <div class="card-value">8</div>
+        </div>
+        
+        <div class="data-card">
+            <div class="card-label">Statistique Future</div>
+            <div class="card-value">0</div>
+        </div>
+
+    </div>
+    
+    </body>
+</html>
+
