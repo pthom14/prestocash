@@ -102,7 +102,7 @@
             </p>
         </section>
 
-        <section id="register-form" style="display: none;">
+                <section id="register-form" style="display: none;">
             <h2>Inscription Affilié</h2>
             <form action="#" method="POST">
                 
@@ -111,6 +111,19 @@
                 
                 <label for="reg_email">E-mail :</label>
                 <input type="email" id="reg_email" name="email" required>
+                
+                <label for="reg_country">Pays de résidence :</label>
+                <select id="reg_country" name="country" required>
+                    <option value="" disabled selected>-- Sélectionnez votre pays --</option>
+                    <option value="Togo">Togo</option>
+                    <option value="Ghana">Ghana</option>
+                    <option value="Cote_Ivoire">Côte d'Ivoire</option>
+                    <option value="Senegal">Sénégal</option>
+                    <option value="Benin">Bénin</option>
+                    <option value="Cameroun">Cameroun</option>
+                    <option value="Congo">Congo</option>
+                    <option value="Mali">Mali</option>
+                </select>
                 
                 <label for="reg_password">Mot de passe :</label>
                 <input type="password" id="reg_password" name="password" required>
@@ -121,8 +134,7 @@
                 Déjà un compte ? <a href="#" onclick="showLogin()">Se Connecter</a>
             </p>
         </section>
-    </div>
-    
+
     <script>
         function showRegister() {
             document.getElementById('login-form').style.display = 'none';
