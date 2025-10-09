@@ -1,0 +1,78 @@
+<form action="#" method="POST" class="deposit-form">
+    <div class="form-group">
+        <label for="amount">Montant à Déposer (FCFA)</label>
+        <input type="number" id="amount" name="amount" min="1000" placeholder="Ex: 5000" required>
+    </div>
+
+    <div class="form-group">
+        <label for="method">Méthode de Paiement</label>
+        <select id="method" name="method" required>
+            <option value="" disabled selected>-- Sélectionner la méthode --</option>
+            <option value="togocel">Togocel Money</option>
+            <option value="moov">Moov Money</option>
+            <option value="visa">Carte Visa</option>
+            <option value="usdt_bep20">USDT BEP20</option>
+        </select>
+    </div>
+
+    <div class="info-box" id="togocel-info" style="display: none;">
+        <h4>Dépôt par Togocel Money</h4>
+        <p>Veuillez envoyer votre montant à ce numéro via l'application ou code USSD :</p>
+        <div class="highlight-info">
+            <strong>Numéro Togocel : 72199198</strong>
+        </div>
+        <p class="warning-text">Important : Gardez une preuve de transaction. Le dépôt sera validé après vérification.</p>
+    </div>
+
+    <div class="info-box" id="moov-info" style="display: none;">
+        <h4>Dépôt par Moov Money</h4>
+        <p>Veuillez envoyer votre montant à ce numéro via l'application ou code USSD :</p>
+        <div class="highlight-info">
+            <strong>Numéro Moov : 96200865</strong>
+        </div>
+        <p class="warning-text">Important : Les frais de transfert sont à votre charge. Le dépôt sera validé après vérification.</p>
+    </div>
+    
+    <div class="info-box" id="usdt_bep20-info" style="display: none;">
+        <h4>Dépôt par USDT (Réseau BEP20)</h4>
+        <p>Veuillez copier et utiliser **EXACTEMENT** cette adresse de portefeuille pour le transfert :</p>
+        <div class="highlight-info">
+            <strong>Adresse : 0x321FE3416D4612D8223b6fC58095f2ED511F8749</strong>
+        </div>
+        <p class="warning-text">Attention : N'envoyez pas d'USDT via un autre réseau (ERC20, TRC20, etc.), vos fonds seraient perdus.</p>
+    </div>
+
+    <div class="info-box" id="visa-info" style="display: none;">
+        <h4>Dépôt par Carte Bancaire (VISA)</h4>
+        <p>Ce dépôt nécessite de procéder au paiement en ligne.</p>
+        <p class="warning-text">Pour des raisons de sécurité, le paiement par carte est géré par un partenaire externe. (Le numéro '4577 9300...' n'est qu'un identifiant et ne doit pas être entré par l'utilisateur.)</p>
+    </div>
+
+    <button type="submit" class="btn btn-deposit" style="margin-top: 20px;">
+        <i class="fas fa-check-circle"></i> J'ai effectué le Dépôt
+    </button>
+</form>
+
+<script>
+    document.querySelector('.deposit-form select[name="method"]').addEventListener('change', function() {
+        var method = this.value;
+        
+        // Cacher toutes les boîtes d'info
+        document.getElementById('togocel-info').style.display = 'none';
+        document.getElementById('moov-info').style.display = 'none';
+        document.getElementById('visa-info').style.display = 'none';
+        document.getElementById('usdt_bep20-info').style.display = 'none';
+
+        // Afficher uniquement la boîte d'info sélectionnée
+        if (method === 'togocel') {
+            document.getElementById('togocel-info').style.display = 'block';
+        } else if (method === 'moov') {
+            document.getElementById('moov-info').style.display = 'block';
+        } else if (method === 'visa') {
+            document.getElementById('visa-info').style.display = 'block';
+        } else if (method === 'usdt_bep20') {
+            document.getElementById('usdt_bep20-info').style.display = 'block';
+        }
+    });
+</script>
+
