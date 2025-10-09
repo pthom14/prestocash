@@ -1,116 +1,141 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Premier Site GitHub</title>
-</head>
-<body>
-    <h1>Bienvenue sur mon site web !</h1>
-    <p>Ce site est codé directement depuis Termux.</p>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affiliation Pro - Connexion & Inscription</title>
+    <title>PrestoCash - Connexion/Inscription</title>
+    
     <style>
-        /* CSS de base pour que ce soit lisible */
+        /* Styles Généraux */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
+            background-color: #f0f2f5; /* Fond léger */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f4f4f4; /* Fond gris clair */
-        }
-        .container {
-            width: 90%;
-            max-width: 400px;
+            margin: 0;
             padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
         }
-        h1 {
+
+        /* Conteneur principal */
+        .auth-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 380px;
+        }
+
+        /* Titre de l'application */
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .logo h1 {
+            color: #004aad; /* Bleu de la marque */
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        /* Formulaires */
+        h2 {
             text-align: center;
             color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
         }
+
         form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
         }
+
         label {
-            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-size: 0.9em;
             color: #555;
         }
-        input[type="text"], input[type="email"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box; /* Inclut le padding dans la largeur */
-        }
-        button {
+
+        input, select {
             padding: 12px;
-            background-color: #007bff; /* Bleu pour le CTA */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 1em;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        
+        /* Bouton principal */
+        button[type="submit"] {
+            background-color: #1a73e8; /* Bleu vif pour l'action */
             color: white;
+            padding: 12px 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
+            font-size: 1em;
             cursor: pointer;
-            font-size: 16px;
+            margin-top: 15px;
+            transition: background-color 0.3s;
         }
-        button:hover {
-            background-color: #0056b3;
+
+        button[type="submit"]:hover {
+            background-color: #004aad;
         }
+
+        /* Lien de basculement */
         .toggle-link {
             text-align: center;
             margin-top: 20px;
             font-size: 0.9em;
         }
         .toggle-link a {
-            color: #007bff;
+            color: #1a73e8;
             text-decoration: none;
+            font-weight: bold;
+        }
+        .toggle-link a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Affiliation Pro</h1>
+
+    <div class="auth-container">
         
+        <div class="logo">
+            <h1>PrestoCash</h1>
+        </div>
+
         <section id="login-form">
-            <h2>Connexion Affilié</h2>
-            <form action="#" method="POST">
+            <h2>Accéder à mon Compte</h2>
+            <form action="dashboard.html" method="GET">
                 
                 <label for="login_email">E-mail :</label>
-                <input type="email" id="login_email" name="email" required>
+                <input type="email" id="login_email" name="email" required placeholder="votre@email.com">
                 
                 <label for="login_password">Mot de passe :</label>
-                <input type="password" id="login_password" name="password" required>
+                <input type="password" id="login_password" name="password" required placeholder="******">
                 
                 <button type="submit">Se Connecter</button>
             </form>
             <p class="toggle-link">
-                Pas encore de compte ? <a href="#" onclick="showRegister()">S'inscrire ici</a>
+                Pas encore de compte ? <a href="#" onclick="showRegister()">S'inscrire</a>
             </p>
         </section>
 
-                <section id="register-form" style="display: none;">
+        <section id="register-form" style="display: none;">
             <h2>Inscription Affilié</h2>
-            <form action="#" method="POST">
+            <form action="dashboard.html" method="GET">
                 
                 <label for="reg_name">Nom d'utilisateur :</label>
-                <input type="text" id="reg_name" name="username" required>
+                <input type="text" id="reg_name" name="username" required placeholder="ThomasAMEKE">
                 
                 <label for="reg_email">E-mail :</label>
-                <input type="email" id="reg_email" name="email" required>
+                <input type="email" id="reg_email" name="email" required placeholder="votre@email.com">
                 
                 <label for="reg_country">Pays de résidence :</label>
                 <select id="reg_country" name="country" required>
@@ -126,7 +151,7 @@
                 </select>
                 
                 <label for="reg_password">Mot de passe :</label>
-                <input type="password" id="reg_password" name="password" required>
+                <input type="password" id="reg_password" name="password" required placeholder="Minimum 6 caractères">
                 
                 <button type="submit">S'inscrire et Commencer</button>
             </form>
@@ -134,6 +159,8 @@
                 Déjà un compte ? <a href="#" onclick="showLogin()">Se Connecter</a>
             </p>
         </section>
+
+    </div>
 
     <script>
         function showRegister() {
@@ -148,3 +175,4 @@
     </script>
 </body>
 </html>
+
